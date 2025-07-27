@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../auth/logout.dart';
-import 'package:laptopia/pages/edit_profile.dart';
-import '../auth/update_pass.dart';
+// Hapus import halaman spesifik karena menggunakan named routes
+// import 'package:laptopia/pages/edit_profile.dart';
+// import '../auth/update_pass.dart';
+// import 'package:laptopia/pages/home/product_list_admin.dart';
+
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -11,54 +14,56 @@ class AdminDashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xFFb79ced),
+        backgroundColor: const Color(0xFFb79ced),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Image.asset('lib/images/icon_putih.png'),
         ),
-        title: Text('Admin Dashboard'),
+        title: const Text('Laptopia'),
         actions: [
           PopupMenuButton<String>(
             onSelected: (value) {
               if (value == 'logout') {
-                showDialog(context: context, builder: (_) => LogoutPage());
-              } else if (value == 'edit_profile') {
-                Get.to(() => EditProfilePage());
-              } else if (value == 'ganti_password') {
-                Get.to(() => UpdatePassPage());
+                showDialog(context: context, builder: (_) => const LogoutPage());
               }
             },
-            itemBuilder: (context) => [
-              PopupMenuItem(value: 'edit_profile', child: Text('Edit Profile')),
-              PopupMenuItem(value: 'ganti_password', child: Text('Ganti Password')),
+            itemBuilder: (context) => const [
               PopupMenuItem(value: 'logout', child: Text('Logout')),
             ],
-            icon: Icon(Icons.person, color: Colors.white),
+            icon: const Icon(Icons.person, color: Colors.white),
           ),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Selamat datang, Admin",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
-            Text("Gunakan menu di atas untuk mengelola profil atau keluar."),
-            SizedBox(height: 30),
+            const SizedBox(height: 10),
+            const Text("Gunakan menu di bawah ini untuk mengelola CRUD Produk Laptop."),
+            const SizedBox(height: 30),
             Card(
               elevation: 3,
-              // ignore: deprecated_member_use
-              color: Color(0xFFb79ced).withOpacity(0.1),
+              // Menggunakan nilai heksadesimal dengan alpha untuk opacity 10%
+              color: const Color.fromARGB(255, 255, 255, 255),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               child: ListTile(
-                leading: Icon(Icons.laptop, color: Color(0xFFb79ced)),
-                title: Text("Manajemen Produk Laptop"),
-                subtitle: Text("Tambah, edit, dan hapus data laptop"),
-                onTap: () {},
+                leading: const Icon(Icons.laptop, color: Color.fromARGB(255, 0, 0, 0)),
+                title: const Text(
+                      "Manajemen Produk Laptop",
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), 
+                    ),
+                    subtitle: const Text(
+                      "Tambah, edit, dan hapus data laptop",
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)), 
+                    ),
+                onTap: () {
+                  Get.toNamed('/product_list_admin'); // Menggunakan named route
+                },
               ),
             ),
           ],

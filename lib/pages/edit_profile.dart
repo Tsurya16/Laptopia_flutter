@@ -42,7 +42,18 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Edit Profile")),
+      appBar: AppBar(title: Text("Edit Profile"),
+      leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            if (Get.previousRoute.isNotEmpty) {
+              Get.back();
+            } else {
+              Get.offAllNamed('/user_dashboard');
+            }
+          },
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(

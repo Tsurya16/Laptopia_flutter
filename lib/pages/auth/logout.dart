@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'login.dart';
+// Hapus import yang tidak lagi dibutuhkan karena menggunakan named routes
+// import 'login.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoutPage extends StatelessWidget {
   const LogoutPage({super.key});
+
   Future<void> logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
@@ -21,7 +23,7 @@ class LogoutPage extends StatelessWidget {
 
       if (response.statusCode == 200) {
         await prefs.remove('token'); // Hapus token dari lokal
-        Get.offAll(() => LoginPage());
+        Get.offAllNamed('/login'); // Menggunakan named route
         Get.snackbar("Berhasil", "Logout berhasil");
       } else {
         Get.snackbar("Gagal", "Logout gagal: ${response.body}");

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login.dart';
+// Hapus import yang tidak lagi dibutuhkan karena menggunakan named routes
+// import 'login.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -34,7 +35,7 @@ class RegisterPage extends StatelessWidget {
       await prefs.setString('token', token);
 
       Get.snackbar("Sukses", "Registrasi berhasil");
-      Get.off(() => LoginPage());
+      Get.offNamed('/login'); // Menggunakan named route
     } else {
       Get.snackbar("Gagal", data['message'] ?? 'Terjadi kesalahan');
     }

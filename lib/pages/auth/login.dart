@@ -4,10 +4,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Hapus import yang tidak lagi dibutuhkan karena menggunakan named routes
+// import '../home/admin_dashboard.dart';
+// import '../home/user_dashboard.dart';
+// import 'register.dart';
 
-import '../home/admin_dashboard.dart';
-import '../home/user_dashboard.dart';
-import 'register.dart';
 import 'package:laptopia/custom/custom_appbar.dart';
 
 class LoginPage extends StatelessWidget {
@@ -39,9 +40,9 @@ class LoginPage extends StatelessWidget {
       Get.snackbar("Sukses", "Login berhasil");
 
       if (role == 'user') {
-        Get.offAll(() => UserDashboard());
+        Get.offAllNamed('/user_dashboard'); // Menggunakan named route
       } else {
-        Get.offAll(() => AdminDashboard());
+        Get.offAllNamed('/admin_dashboard'); // Menggunakan named route
       }
     } else {
       Get.snackbar(
@@ -82,7 +83,7 @@ class LoginPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Get.to(() => RegisterPage());
+                Get.toNamed('/register'); // Menggunakan named route
               },
               child: const Text("Belum punya akun? Daftar"),
             ),

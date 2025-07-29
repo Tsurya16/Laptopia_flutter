@@ -279,11 +279,7 @@ void deleteLaptop(int id, int index) async {
                     },
                   ),
                 ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showAddEditLaptopDialog(),
-        backgroundColor: const Color(0xFFb79ced),
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
+
     );
   }
 }

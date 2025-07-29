@@ -195,58 +195,64 @@ final CartController cartController = Get.find<CartController>();
                       ),
                     ),
                   )
-          : product == null
-              ? const Center(child: Text('Data produk tidak tersedia.'))
-              : SingleChildScrollView(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      LayoutBuilder(
-            builder: (context, constraints) {
-              double width = constraints.maxWidth;
-              double height = width * 9 / 16; // 16:9 tapi landscape
-
-              // Batasi maksimal tinggi agar tidak terlalu besar
-              double maxHeight = 250; // batas tinggi maksimal
-
-              return SizedBox(
-                width: width,
-                height: height > maxHeight ? maxHeight : height,
-                child: Image.network(
-                  product!.imageUrl,
-                  fit: BoxFit.contain, // agar tidak crop
-                  errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image),
-                ),
-              );
-            },
-          ),
-
-
-                      const SizedBox(height: 16),
-                      Text(
-                        product!.name,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+          : Stack(
+                  children: [
+                    SingleChildScrollView(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 80), // padding bawah ditambah agar tombol tidak ketutup
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LayoutBuilder(
+                            builder: (context, constraints) {
+                              double width = constraints.maxWidth;
+                              double height = width * 9 / 16;
+                              double maxHeight = 250;
+                              return SizedBox(
+                                width: width,
+                                height: height > maxHeight ? maxHeight : height,
+                                child: Image.network(
+                                  product!.imageUrl,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(Icons.broken_image),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            product!.name,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            _currencyFormatter.format(product!.price),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.green[700],
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            product!.description,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(height: 24),
+                        ],
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        _currencyFormatter.format(product!.price), // Gunakan formatter di sini
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.green[700],
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        product!.description,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 24),
-                      SizedBox(
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(16),
+                        child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
                             icon: const Icon(Icons.add_shopping_cart, color: Colors.white),
@@ -259,22 +265,21 @@ final CartController cartController = Get.find<CartController>();
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               textStyle: const TextStyle(fontSize: 18),
                             ),
-                                onPressed: () {
-                                cartController.addToCart(product!);
-
-                                Get.snackbar(
-                                  "Berhasil",
-                                  "Produk ditambahkan ke keranjang",
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  backgroundColor: const Color(0xFFb79ced),
-                                  colorText: Colors.white,
-                                );
-                              },
-
+                            onPressed: () {
+                              cartController.addToCart(product!);
+                              Get.snackbar(
+                                "Berhasil",
+                                "Produk ditambahkan ke keranjang",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: const Color(0xFFb79ced),
+                                colorText: Colors.white,
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
     );
   }

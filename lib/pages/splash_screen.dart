@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       if (isValidToken) {
         final response = await http.get(
-          Uri.parse('http://127.0.0.1:8000/api/user'), // Asumsikan ada endpoint /api/user untuk profile
+          Uri.parse('http://10.0.2.2:8000/api/user'), // Asumsikan ada endpoint /api/user untuk profile
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<bool> _validateToken(String token) async {
     try {
       final response = await http.get(
-        Uri.parse('http://127.0.0.1:8000/api/user'), // Ganti jika endpoint user profile berbeda
+        Uri.parse('http://10.0.2.2:8000/api/user'), // Ganti jika endpoint user profile berbeda
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',

@@ -6,13 +6,14 @@ Aplikasi mobile untuk [isi dengan deskripsi singkat aplikasi, misal: katalog lap
 * Autentikasi Pengguna (Login, Register, Logout) dengan token Sanctum
 * Manajemen Profil Pengguna (Edit Profil, Ubah Password)
 * Katalog Produk / Laptop
-* [Tambahkan fitur lainnya di sini]
-* [Tambahkan fitur lainnya di sini]
+* Terdapat Keranjang Untuk Produk Yang Ingin Dibeli
+* Terdapat Banyak Pilihan Metode Pembayaran
 
 ## 🛠️ Tech Stack
 * **Frontend:** Flutter
 * **State Management & Routing:** GetX
 * **Backend:** Laravel (RESTful API)
+  Link: https://github.com/Tsurya16/laptopia_backend_laravel.git
 
 ## 📋 Prasyarat
 Sebelum menjalankan project ini, pastikan sistem kamu sudah terinstal:

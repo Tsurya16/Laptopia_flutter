@@ -1,16 +1,32 @@
-# laptopia
+# Laptopia - Flutter App
 
-A new Flutter project.
+Aplikasi mobile untuk [isi dengan deskripsi singkat aplikasi, misal: katalog laptop atau toko komputer online]. Aplikasi ini dibangun menggunakan framework Flutter dan terintegrasi penuh dengan backend Laravel.
 
-## Getting Started
+## 🚀 Fitur Utama
+* Autentikasi Pengguna (Login, Register, Logout) dengan token Sanctum
+* Manajemen Profil Pengguna (Edit Profil, Ubah Password)
+* Katalog Produk / Laptop
+* [Tambahkan fitur lainnya di sini]
+* [Tambahkan fitur lainnya di sini]
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tech Stack
+* **Frontend:** Flutter
+* **State Management & Routing:** GetX
+* **Backend:** Laravel (RESTful API)
 
-A few resources to get you started if this is your first Flutter project:
+## 📋 Prasyarat
+Sebelum menjalankan project ini, pastikan sistem kamu sudah terinstal:
+* [Flutter SDK](https://docs.flutter.dev/get-started/install)
+* Android Studio / VS Code (beserta ekstensi Flutter & Dart)
+* Lingkungan PHP & MySQL (seperti XAMPP/Laragon) untuk menjalankan backend.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 💻 Cara Menjalankan Project
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 1. Persiapkan Backend (Laravel)
+Pastikan backend Laravel untuk Laptopia sudah dikonfigurasi dan dijalankan.
+```bash
+# Arahkan terminal ke folder backend Laravel
+cd path/to/laptopia-backend
+
+# Jalankan server lokal
+php artisan serve
